@@ -51,3 +51,7 @@ The following dialogue reproduces, in condensed form, the discussion that led to
 ## Status and Workflow
 
 This tag contains documentation only. Work proceeds as specified: one milestone per PR, every CI stage green before merge, the coding agent receiving one SPEC section at a time. Deviations from the specifications are documented in the corresponding PR; silent deviations are rejected.
+
+## Best Practice for This Repo
+
+The `Introduction` tag marks a state of pure specification: all documentation, no implementation. This is deliberate. The recommended way to learn from this repository: fork it at the `Introduction` tag and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. Building the simulator, the framework, and the estimator yourself — instead of reading finished code — is the point. The milestones are ordered so that each phase only assumes what the previous one has taught; if you can meet the acceptance criteria of Phase 1 without looking at a reference, you have already understood the state vector, and Phases 2 and 3 build on exactly that foundation. Corrections to the specifications are welcome as PRs against this repository; implementation progress belongs in your fork.
