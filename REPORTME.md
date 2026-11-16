@@ -3,7 +3,8 @@
 This file is the index of all learning reports in the repository. The learning
 journals live in the packages, longer deep-dive analyses live in `docs/progress/`,
 and both are indexed here. Static project reference (build, conventions, CI) is kept at
-the bottom of this file.
+the bottom of this file. The complexity-theoretic vocabulary shared by the SPECs, the
+dialogue in `README.md`, and these reports is collected in [COMPLEXITY.md](COMPLEXITY.md).
 
 ## Contents
 
@@ -21,9 +22,11 @@ the bottom of this file.
 
 - One journal per package: `packages/qsim/REPORTME.md`, `packages/qhsp/REPORTME.md`, `packages/qae/REPORTME.md`.
 - One entry per milestone, written on completion — not per work session.
-- Fixed fields: milestone, date, deviations from the SPEC (with rationale), open questions.
+- Fixed fields: milestone, date, status, misconception overcome, deviations from the SPEC (with rationale), open questions.
+- The misconception field records what you initially had wrong and how you noticed; the error you worked through is the part of the entry worth rereading later.
 - Hard limit: about ten lines per entry. Anything longer becomes a deep-dive report in `docs/progress/` and is indexed below.
 - Newest entry at the top of each journal.
+- A milestone counts as closed only when its entry carries a one-line self-explanation of the central mechanism, written without opening the SPEC. If that sentence does not come, the milestone is not done — whatever the pipeline says.
 
 Every journal ships with pre-created placeholder entries, so logging means filling
 fields, not inventing structure.
@@ -42,11 +45,14 @@ journal entry carries deviations, link the entry from the cell.
 ## Deep-dive report index
 
 Longer analyses live in `docs/progress/` and are indexed here. Use
-[TEMPLATE.md](docs/progress/TEMPLATE.md) to start one.
+[TEMPLATE.md](docs/progress/TEMPLATE.md) to start one. Rows marked [suggested]
+are recommended optional deep-dives: start them from the template when the moment
+comes, and replace the row with a link once the report exists.
 
 | Report | Phase | Milestone | Date |
 |---|---|---|---|
-| — | — | — | — |
+| [suggested] Stabilizer formalism and Gottesman–Knill — where classical simulation stays efficient, and why Shor escapes it | qsim | after M3 | — |
+| [suggested] Heisenberg scaling and the Cramér–Rao bound — quantum vs classical estimation as one information-theoretic picture | qae | after M4 | — |
 
 ## Scaffold status
 
