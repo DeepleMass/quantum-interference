@@ -2,6 +2,8 @@
 
 A didactic monorepo on quantum computation: from a hand-written state-vector simulator, through a hidden-subgroup framework on Qiskit, to Grover-based amplitude estimation as a statistical learning problem.
 
+Human-designed, AI-generated: the specifications, the curriculum, and the dialogue are human work; the scaffold, the test suite, and this documentation were generated from them with AI assistance. Learning means closing the gap between the two.
+
 ## Contents
 
 1. [Purpose of This Project](#purpose-of-this-project)
@@ -18,7 +20,7 @@ This repository exists to understand quantum computation by building it, not by 
 - `SPEC-PHASE-2-HSP-FRAMEWORK.md` — `qhsp`: the hidden subgroup problem as an abstract framework on Qiskit with three instances (order finding, Simon, discrete logarithm), and a hardware abstraction built exclusively on Qiskit Runtime primitives, so that moving from ideal simulation via noise models to real devices is a configuration change.
 - `SPEC-PHASE-3-MLAE.md` — `qae`: Grover and maximum-likelihood amplitude estimation. The quadratic speedup is treated as a statistical estimation problem — likelihood, Fisher information, Cramér–Rao bound, own optimizers, Bayesian variant — with Monte Carlo applications.
 
-A complexity-theoretic companion, `COMPLEXITY.md`, collects the asymptotic vocabulary used throughout — P, NP, BPP, BQP, query lower bounds, Gottesman–Knill simulation, the Cramér–Rao bound, Heisenberg scaling — relates the terms, and places the three phases within that landscape.
+A complexity-theoretic companion, `COMPLEXITY.md`, collects the asymptotic vocabulary used throughout — P, NP, BPP, BQP, query lower bounds, Gottesman–Knill simulation, the Cramér–Rao bound, Heisenberg scaling — relates the terms, and places the three phases within that landscape. A linear-algebra companion, `LINALG.md`, does the same for the objects themselves: amplitudes and the Born rule, tensor products, unitaries and projectors, the spectral theorem, and the QFT as the DFT — the mathematics the three phases make executable.
 
 The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold is preserved by the tag [docs-baseline](https://github.com/DeepleMass/quantum-interference/tree/docs-baseline).
 

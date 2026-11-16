@@ -4,7 +4,8 @@ This file is the index of all learning reports in the repository. The learning
 journals live in the packages, longer deep-dive analyses live in `docs/progress/`,
 and both are indexed here. Static project reference (build, conventions, CI) is kept at
 the bottom of this file. The complexity-theoretic vocabulary shared by the SPECs, the
-dialogue in `README.md`, and these reports is collected in [COMPLEXITY.md](COMPLEXITY.md).
+dialogue in `README.md`, and these reports is collected in [COMPLEXITY.md](COMPLEXITY.md); the
+linear-algebra machinery underneath is collected in [LINALG.md](LINALG.md).
 
 ## Contents
 
@@ -53,6 +54,7 @@ comes, and replace the row with a link once the report exists.
 |---|---|---|---|
 | [suggested] Stabilizer formalism and Gottesman–Knill — where classical simulation stays efficient, and why Shor escapes it | qsim | after M3 | — |
 | [suggested] Heisenberg scaling and the Cramér–Rao bound — quantum vs classical estimation as one information-theoretic picture | qae | after M4 | — |
+| [suggested] State vectors on the metal — memory layout, cache behavior, and where a GPU would and would not help | qsim | after M6 | — |
 
 ## Scaffold status
 
