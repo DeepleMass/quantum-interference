@@ -5,6 +5,18 @@ journals live in the packages, longer deep-dive analyses live in `docs/progress/
 and both are indexed here. Static project reference (build, conventions, CI) is kept at
 the bottom of this file.
 
+## Contents
+
+1. [How progress is logged](#how-progress-is-logged)
+2. [Milestone status](#milestone-status)
+3. [Deep-dive report index](#deep-dive-report-index)
+4. [Scaffold status](#scaffold-status)
+5. [Build](#build)
+6. [Architecture rationale](#architecture-rationale)
+7. [Naming and layout conventions](#naming-and-layout-conventions)
+8. [Reports](#reports)
+9. [CI](#ci)
+
 ## How progress is logged
 
 - One journal per package: `packages/qsim/REPORTME.md`, `packages/qhsp/REPORTME.md`, `packages/qae/REPORTME.md`.
