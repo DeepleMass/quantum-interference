@@ -20,10 +20,10 @@ dialogue uses a term whose exact content you want to check.
 
 ## Machine models and complexity classes
 
-- **P** — problems decidable by a deterministic machine in polynomial time. The class of "efficiently solvable", by convention.
-- **NP** — problems whose solutions are verifiable in polynomial time. Solving and verifying are different acts; NP-completeness is a statement about verification structure, not about how hard typical instances are.
-- **BPP** — problems solvable by a randomized classical machine in polynomial time with error probability at most 1/3 per side. The bound 1/3 is conventional: independent repetition plus majority vote drives the error down exponentially (Chernoff). Repetition-as-amplification is the same statistical technique Phase 3 rebuilds with seeded sampling.
-- **BQP** — problems solvable by a quantum computer (a uniform family of polynomial-size quantum circuits) with the same bounded-error convention. Measurement yields a random outcome; BQP is a probability statement, exactly like BPP.
+- **P** (Polynomial time) — problems decidable by a deterministic machine in polynomial time. The class of "efficiently solvable", by convention.
+- **NP** (Nondeterministic Polynomial time) — problems whose solutions are verifiable in polynomial time. Solving and verifying are different acts; NP-completeness is a statement about verification structure, not about how hard typical instances are.
+- **BPP** (Bounded-error Probabilistic Polynomial time) — problems solvable by a randomized classical machine in polynomial time with error probability at most 1/3 per side. The bound 1/3 is conventional: independent repetition plus majority vote drives the error down exponentially (Chernoff). Repetition-as-amplification is the same statistical technique Phase 3 rebuilds with seeded sampling.
+- **BQP** (Bounded-error Quantum Polynomial time) — problems solvable by a quantum computer (a uniform family of polynomial-size quantum circuits) with the same bounded-error convention. Measurement yields a random outcome; BQP is a probability statement, exactly like BPP.
 
 ## What is and is not known about BQP
 
