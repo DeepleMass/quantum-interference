@@ -80,10 +80,10 @@ Standard literature, from textbook to paper. Each entry names the phase it accom
 
 Textbooks and lecture notes:
 
-- M. A. Nielsen and I. L. Chuang, `Quantum Computation and Quantum Information`, Cambridge University Press, 10th anniversary edition, 2010. The standard reference; its chapters on the quantum Fourier transform, order finding, and the hidden subgroup problem cover exactly the machinery of Phases 1 and 2.
-- J. Preskill, `Lecture Notes on Quantum Computation`, Caltech, available online. Physics-first, free, and deeper on fault tolerance than anything in this repository.
-- N. D. Mermin, `Quantum Computer Science: An Introduction`, Cambridge University Press, 2007. The shortest rigorous path through the subject, and the strictest about notation.
-- A. Kitaev, A. Shen, and M. Vyalyi, `Classical and Quantum Computation`, AMS, 2002. The complexity-theoretic view behind `COMPLEXITY.md`.
+- M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, Cambridge University Press, 10th anniversary edition, 2010. The standard reference; its chapters on the quantum Fourier transform, order finding, and the hidden subgroup problem cover exactly the machinery of Phases 1 and 2.
+- J. Preskill, *Lecture Notes on Quantum Computation*, Caltech, available online. Physics-first, free, and deeper on fault tolerance than anything in this repository.
+- N. D. Mermin, *Quantum Computer Science: An Introduction*, Cambridge University Press, 2007. The shortest rigorous path through the subject, and the strictest about notation.
+- A. Kitaev, A. Shen, and M. Vyalyi, *Classical and Quantum Computation*, AMS, 2002. The complexity-theoretic view behind `COMPLEXITY.md`.
 
 Foundational papers:
 
