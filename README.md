@@ -92,6 +92,7 @@ Foundational papers:
 - P. W. Shor, "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer," SIAM Journal on Computing 26(5), 1997. Phases 1 and 2: order finding and the abelian Fourier transform.
 - D. R. Simon, "On the Power of Quantum Computation," SIAM Journal on Computing 26(5), 1997. Phase 2: the Simon instance and the oracle separation behind the one provable exponential gap.
 - L. K. Grover, "A Fast Quantum Mechanical Algorithm for Database Search," Proceedings of the 28th ACM STOC, 1996. Phase 3: amplitude amplification.
+- G. Brassard, P. Høyer, M. Mosca, and A. Tapp, "Quantum Amplitude Estimation," Information and Computation 191, 79–113, 2004; arXiv:quant-ph/0005055. Phase 3: canonical amplitude estimation, the reference method the MLAE variant is validated against.
 - C. H. Bennett, E. Bernstein, G. Brassard, and U. Vazirani, "Strengths and Weaknesses of Quantum Computing," SIAM Journal on Computing 26(5), 1997. The √N query lower bound: why Grover is optimal and search stays quadratic.
 - Y. Suzuki, S. Endo, J. Chen, and K. Fujii, "Amplitude estimation without phase estimation," Quantum 4, 261, 2020. Phase 3: maximum-likelihood amplitude estimation.
 - S. Aaronson and D. Gottesman, "Improved Simulation of Stabilizer Circuits," Physical Review A 70, 052328, 2004. The suggested stabilizer deep-dive, made practical.

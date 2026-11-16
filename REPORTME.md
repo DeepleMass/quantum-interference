@@ -128,6 +128,7 @@ python scripts/run_period_finding.py --n 15 --a 7 --shots 1024 --seed 42
   `docs/progress/` (committed deep-dive reports, indexed above).
 - Placeholder convention in this scaffold: quantum semantics are `TODO(Mx)` functions
   returning default values; trivial accessors and formatting helpers are provided.
+- Reading pointers: the milestone tables in the SPECs carry a Reading column. N&C citations refer to Nielsen & Chuang, *Quantum Computation and Quantum Information* (10th anniversary edition), cited by section and print page; papers are cited as in the README references section.
 
 ## Reports
 

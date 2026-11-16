@@ -110,14 +110,16 @@ REPORTME sections: setup, architecture with the thesis "one algorithm, three ins
 
 ## 10. Milestones and Acceptance Criteria
 
-| M | Content | Acceptance |
-|---|---------|------------|
-| M1 | Package integration into the monorepo, packaging, green CI with a trivial test, qsim dependency resolved | CI runs, both packages imported in the same test |
-| M2 | groups.py + problem.py + unit tests | Invariance and negative tests green |
-| M3 | base.py + fourier.py + simon.py, end-to-end | Simon acceptance from 7.2 met |
-| M4 | order_finding.py + cross-test against qsim | Order rates and TV distance met |
-| M5 | discrete_log.py + hypothesis suite | Discrete-log rate met, property tests green |
-| M6 | Target profiles noisy + remote, transpilation statistics, reports | Noisy thresholds documented and held, remote runbook written |
+| M | Content | Acceptance | Reading |
+|---|---------|------------|---------|
+| M1 | Package integration into the monorepo, packaging, green CI with a trivial test, qsim dependency resolved | CI runs, both packages imported in the same test | — (tooling) |
+| M2 | groups.py + problem.py + unit tests | Invariance and negative tests green | N&C §5.4.3 The hidden subgroup problem, pp. 240–241 (Figure 5.5, p. 241); Appendix 2: Group theory, pp. 611 ff. |
+| M3 | base.py + fourier.py + simon.py, end-to-end | Simon acceptance from 7.2 met | N&C §5.4.3, pp. 240–243; D. R. Simon (1997), SIAM J. Comput. 26(5), pp. 1474–1483 (not treated in N&C) |
+| M4 | order_finding.py + cross-test against qsim | Order rates and TV distance met | N&C §5.3.1 Application: order-finding, pp. 226–233 |
+| M5 | discrete_log.py + hypothesis suite | Discrete-log rate met, property tests green | N&C §5.4.1 Period-finding, pp. 236–237; §5.4.2 Discrete logarithms, pp. 238–239 |
+| M6 | Target profiles noisy + remote, transpilation statistics, reports | Noisy thresholds documented and held, remote runbook written | N&C ch. 8, Quantum noise and quantum operations, pp. 353 ff.; §8.1, pp. 354–356; §8.2, pp. 357 ff. |
+
+Reading column: references are to Nielsen & Chuang, *Quantum Computation and Quantum Information* (10th anniversary edition), cited by section and print page; papers are cited as in the README references section. See also `LINALG.md` and `COMPLEXITY.md`.
 
 Each milestone is one PR; the agent works milestone-wise with the respective SPEC section as its prompt. Remote runs on real devices are a manual step after M6, not part of CI.
 

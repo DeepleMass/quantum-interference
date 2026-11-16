@@ -114,16 +114,18 @@ REPORTME with the thesis "quadratic speedup as a statistical estimation problem"
 
 ## 9. Milestones and Acceptance Criteria
 
-| M | Content | Acceptance |
-|---|---------|------------|
-| M1 | Package integration into the monorepo, qhsp hookup, green CI with a trivial test | Ideal target from qhsp reachable in CI |
-| M2 | grover.py including search demo | p(k) curve matches the formula, k_opt confirmed |
-| M3 | qpe_ae.py | QPE estimator returns a on the reference instance, cost matrix documented |
-| M4 | mlae/model.py + fisher.py | Analytic derivatives green against numerical reference, CRB correct |
-| M5 | mlae/estimator.py + bayes.py + schedule.py | Integration tests from 6.2 met, Newton passed against SciPy |
-| M6 | mc_apps + scaling acceptance + reports | alpha window from 6.3 held, pi estimate < 2 % relative error, option against exhaustive ground truth |
+| M | Content | Acceptance | Reading |
+|---|---------|------------|---------|
+| M1 | Package integration into the monorepo, qhsp hookup, green CI with a trivial test | Ideal target from qhsp reachable in CI | — (tooling) |
+| M2 | grover.py including search demo | p(k) curve matches the formula, k_opt confirmed | N&C §6.1 The quantum search algorithm, pp. 248–254 (geometric visualization pp. 252–253, performance p. 253) |
+| M3 | qpe_ae.py | QPE estimator returns a on the reference instance, cost matrix documented | N&C §5.2 Phase estimation, pp. 221–225 (incl. §5.2.1, pp. 223–225); Brassard–Høyer–Mosca–Tapp, Quantum Amplitude Estimation (arXiv:quant-ph/0005055) |
+| M4 | mlae/model.py + fisher.py | Analytic derivatives green against numerical reference, CRB correct | Suzuki–Endo–Chen–Fujii (2020), Quantum 4, 261 (MLAE postdates N&C); see COMPLEXITY.md |
+| M5 | mlae/estimator.py + bayes.py + schedule.py | Integration tests from 6.2 met, Newton passed against SciPy | Suzuki et al. (2020), Quantum 4, 261; see COMPLEXITY.md |
+| M6 | mc_apps + scaling acceptance + reports | alpha window from 6.3 held, pi estimate < 2 % relative error, option against exhaustive ground truth | Suzuki et al. (2020), Quantum 4, 261; N&C §6.1, pp. 248–254 for the search baseline |
 
-Each milestone is one PR; the agent works milestone-wise with the SPEC section as its prompt.
+Reading column: references are to Nielsen & Chuang, *Quantum Computation and Quantum Information* (10th anniversary edition), cited by section and print page; papers are cited as in the README references section. See also `LINALG.md` and `COMPLEXITY.md`.
+
+Each milestone is one PR; the agent works milestone-wise with the respective SPEC section as its prompt.
 
 ## 10. Conventions and Documented Decisions
 

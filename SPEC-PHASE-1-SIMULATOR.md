@@ -110,14 +110,16 @@ REPORTME as a living document with sections: build instructions (maturin develop
 
 ## 10. Milestones and Acceptance Criteria
 
-| M | Content | Acceptance |
-|---|---------|------------|
-| M1 | Repo skeleton, workspaces, green CI with a trivial test | CI passes, badge in REPORTME |
-| M2 | state.rs + gates.rs complete, unit tests 7.1 | All gate tests green, norm invariant verified |
-| M3 | qft.rs including sequence and matrix variant | QFT reference tests from 7.1 green |
-| M4 | measure.rs + seeded sampling | Chi-square and reproducibility tests green |
-| M5 | oracle.rs + cfrac.rs + Rust integration tests | Order finding meets the rates from 7.2 for all four reference instances |
-| M6 | Python bindings, postprocess, main script, reports, Qiskit cross-check | N = 15 and N = 21 factorized in a demo, TV-distance test passes, report generated |
+| M | Content | Acceptance | Reading |
+|---|---------|------------|---------|
+| M1 | Repo skeleton, workspaces, green CI with a trivial test | CI passes, badge in REPORTME | — (tooling) |
+| M2 | state.rs + gates.rs complete, unit tests 7.1 | All gate tests green, norm invariant verified | N&C §2.1 Linear algebra, pp. 61–79; §2.2.1–2.2.2, pp. 80–83; §4.2–4.3, pp. 174–184 |
+| M3 | qft.rs including sequence and matrix variant | QFT reference tests from 7.1 green | N&C §5.1 The quantum Fourier transform, pp. 217–220 |
+| M4 | measure.rs + seeded sampling | Chi-square and reproducibility tests green | N&C §2.2.3 Quantum measurement, pp. 84–86; §4.4 Measurement, pp. 185–187 |
+| M5 | oracle.rs + cfrac.rs + Rust integration tests | Order finding meets the rates from 7.2 for all four reference instances | N&C §5.3 Applications: order-finding and factoring, pp. 226–233; continued fractions on p. 229 |
+| M6 | Python bindings, postprocess, main script, reports, Qiskit cross-check | N = 15 and N = 21 factorized in a demo, TV-distance test passes, report generated | — (tooling; conventions per section 11) |
+
+Reading column: references are to Nielsen & Chuang, *Quantum Computation and Quantum Information* (10th anniversary edition), cited by section and print page; papers are cited as in the README references section. See also `LINALG.md` and `COMPLEXITY.md`.
 
 Each milestone is one PR against main, every CI stage must be green, merge only after full acceptance. The agent works milestone by milestone: feed it the respective SPEC section, not the whole document at once.
 
