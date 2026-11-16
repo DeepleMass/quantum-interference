@@ -143,4 +143,4 @@ once M5 is implemented.
 Qiskit pinned to a fixed minor version; `needs: rust-checks`) → `build` (maturin sdist +
 wheel for linux-x86_64, uploaded as artifact). Triggers: pushes and PRs to main.
 
-![CI](https://github.com/<owner>/quantum-interference/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/DeepleMass/quantum-interference/actions/workflows/ci.yml/badge.svg)
