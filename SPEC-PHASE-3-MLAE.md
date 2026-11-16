@@ -45,6 +45,7 @@ quantum-interference/
 ├── docs/reports/
 ├── .github/workflows/ci.yml
 └── README.md
+└── REPORTME.md
 ```
 
 ## 4. Module Requirements
@@ -109,7 +110,7 @@ Jobs: lint (ruff), test-fast (unit, QAE integration on the smallest instances), 
 
 ## 8. Reports on GitHub
 
-README with the thesis "quadratic speedup as a statistical estimation problem", setup, the derivation chain from the Bernoulli model to the CRB in brief, the method matrix (qubits, gate depth, phase-register requirements: classical vs QPE-AE vs MLAE), reproduction instructions with seed discipline. docs/reports/ receives one markdown report per experiment: configuration, point estimates with intervals, empirics versus CRB, scaling exponents, method comparison table; raw data as CSV, fits as coordinate lists, no binary formats in the repository.
+REPORTME with the thesis "quadratic speedup as a statistical estimation problem", setup, the derivation chain from the Bernoulli model to the CRB in brief, the method matrix (qubits, gate depth, phase-register requirements: classical vs QPE-AE vs MLAE), reproduction instructions with seed discipline. docs/reports/ receives one markdown report per experiment: configuration, point estimates with intervals, empirics versus CRB, scaling exponents, method comparison table; raw data as CSV, fits as coordinate lists, no binary formats in the repository.
 
 ## 9. Milestones and Acceptance Criteria
 

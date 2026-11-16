@@ -43,6 +43,7 @@ quantum-interference/
 ├── docs/reports/
 ├── .github/workflows/ci.yml
 └── README.md
+└── REPORTME.md
 ```
 
 ## 4. Domain Layer: Requirements
@@ -105,7 +106,7 @@ Jobs: lint (ruff, format check), test-fast (unit + integration ideal, without sl
 
 ## 9. Reports on GitHub
 
-README sections: setup, architecture with the thesis "one algorithm, three instances", register conventions, the Target concept and the profile matrix, reproduction instructions including seed discipline. docs/reports/ receives one markdown report per experiment with configuration, histogram, success rates, and transpilation statistics; ideal/noisy comparisons as a table in the same document. Raw distributions as CSV attachments, large histograms as workflow artifacts. The CI job summarizes the acceptance criteria from 7.2 and 7.4 as a table in the job summary.
+REPORTME sections: setup, architecture with the thesis "one algorithm, three instances", register conventions, the Target concept and the profile matrix, reproduction instructions including seed discipline. docs/reports/ receives one markdown report per experiment with configuration, histogram, success rates, and transpilation statistics; ideal/noisy comparisons as a table in the same document. Raw distributions as CSV attachments, large histograms as workflow artifacts. The CI job summarizes the acceptance criteria from 7.2 and 7.4 as a table in the job summary.
 
 ## 10. Milestones and Acceptance Criteria
 

@@ -29,7 +29,7 @@ quantum-interference/
 │       │   └── cfrac.rs        # continued fractions
 │       └── tests/              # Rust integration tests
 ├── packages/
-│   └── qsim/                   # Python package (bindings + orchestration)
+│   └── qsim/                   # Python package (bindings + orchestration
 │       ├── src/qsim/
 │       │   ├── __init__.py     # re-exports the pyo3 module
 │       │   ├── postprocess.py  # continued fractions, order reconstruction, retries
@@ -41,6 +41,7 @@ quantum-interference/
 ├── docs/reports/               # generated experiment reports
 ├── .github/workflows/ci.yml
 └── README.md
+└── REPORTME.md
 ```
 
 ## 4. Rust Core Library: Requirements per Module
@@ -105,13 +106,13 @@ Jobs: rust-checks (fmt --check, clippy -D warnings, cargo test in release profil
 
 ## 9. Reports on GitHub
 
-README as a living document with sections: build instructions (maturin develop), architecture rationale (why state vector, why Rust, why Qiskit conventions), naming conventions, pointer to docs/reports. The main script writes one markdown report per experiment to docs/reports/<N>_<a>_<timestamp>.md containing configuration (qubits, Q, seed, shots), the measurement histogram as an ASCII/CSV table, reconstructed r candidates, success rate, and a short interpretation; an experiment run reproduces via the documented seed configuration. The CI test report aggregates the acceptance criteria from 7.2 as a compact table in the job summary. Reports are committed; large raw histograms go to workflow artifacts instead.
+REPORTME as a living document with sections: build instructions (maturin develop), architecture rationale (why state vector, why Rust, why Qiskit conventions), naming conventions, pointer to docs/reports. The main script writes one markdown report per experiment to docs/reports/<N>_<a>_<timestamp>.md containing configuration (qubits, Q, seed, shots), the measurement histogram as an ASCII/CSV table, reconstructed r candidates, success rate, and a short interpretation; an experiment run reproduces via the documented seed configuration. The CI test report aggregates the acceptance criteria from 7.2 as a compact table in the job summary. Reports are committed; large raw histograms go to workflow artifacts instead.
 
 ## 10. Milestones and Acceptance Criteria
 
 | M | Content | Acceptance |
 |---|---------|------------|
-| M1 | Repo skeleton, workspaces, green CI with a trivial test | CI passes, badge in README |
+| M1 | Repo skeleton, workspaces, green CI with a trivial test | CI passes, badge in REPORTME |
 | M2 | state.rs + gates.rs complete, unit tests 7.1 | All gate tests green, norm invariant verified |
 | M3 | qft.rs including sequence and matrix variant | QFT reference tests from 7.1 green |
 | M4 | measure.rs + seeded sampling | Chi-square and reproducibility tests green |
@@ -122,7 +123,7 @@ Each milestone is one PR against main, every CI stage must be green, merge only 
 
 ## 11. Conventions and Documented Decisions
 
-Little-endian indexing (Qiskit convention), big-endian display of bitstrings. Central documented decision in the README: amplitudes are exposed as a read-only NumPy view; no Python-side state mutation, so ownership stays in the Rust core. Seed discipline: every stochastic path takes its seed from the simulator handle, never from a global RNG. Rust: edition 2021, no unsafe blocks except where rust-numpy forces them. Python: fully type-hinted, strict ruff, Python ≥ 3.10.
+Little-endian indexing (Qiskit convention), big-endian display of bitstrings. Central documented decision in the REPORTME: amplitudes are exposed as a read-only NumPy view; no Python-side state mutation, so ownership stays in the Rust core. Seed discipline: every stochastic path takes its seed from the simulator handle, never from a global RNG. Rust: edition 2021, no unsafe blocks except where rust-numpy forces them. Python: fully type-hinted, strict ruff, Python ≥ 3.10.
 
 ## 12. Instructions for the Coding Agent (VS Code)
 
