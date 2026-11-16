@@ -20,7 +20,7 @@ This repository exists to understand quantum computation by building it, not by 
 
 A complexity-theoretic companion, `COMPLEXITY.md`, collects the asymptotic vocabulary used throughout — P, NP, BPP, BQP, query lower bounds, Gottesman–Knill simulation, the Cramér–Rao bound, Heisenberg scaling — relates the terms, and places the three phases within that landscape.
 
-The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold is preserved by the tag [Documentation-only-baseline-—-before-any-code](https://github.com/DeepleMass/quantum-interference/tree/Documentation-only-baseline-%E2%80%94-before-any-code).
+The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold is preserved by the tag [docs-baseline](https://github.com/DeepleMass/quantum-interference/tree/docs-baseline).
 
 ## A Dialogue on Quantum Computation
 
