@@ -20,7 +20,7 @@ This repository exists to understand quantum computation by building it, not by 
 
 A complexity-theoretic companion, `COMPLEXITY.md`, collects the asymptotic vocabulary used throughout — P, NP, BPP, BQP, query lower bounds, Gottesman–Knill simulation, the Cramér–Rao bound, Heisenberg scaling — relates the terms, and places the three phases within that landscape.
 
-The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold remains reachable in the commit history; once a dedicated tag names it, this README will reference it here.
+The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold is preserved by the tag [Documentation-only-baseline-—-before-any-code](https://github.com/DeepleMass/quantum-interference/tree/Documentation-only-baseline-%E2%80%94-before-any-code).
 
 ## A Dialogue on Quantum Computation
 
@@ -64,7 +64,7 @@ The scaffold is in place: package structure, CI, and the full test suite exist; 
 
 ## Best Practice for This Repo
 
-The recommended way to learn from this repository: fork it and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. The scaffold deliberately removes everything that is not learning content — packaging, CI wiring, project structure — so you can concentrate on the implementations.
+The recommended way to learn from this repository: fork it at the [v0.1.0](https://github.com/DeepleMass/quantum-interference/tree/v0.1.0) tag and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. The scaffold deliberately removes everything that is not learning content — packaging, CI wiring, project structure — so you can concentrate on the implementations.
 
 The tests are part of the contract, and the first exercise comes before any implementation: review the provided test suite against the specifications, check whether it covers the acceptance criteria completely and correctly, and fix gaps as your first own commits. This validates the AI-generated tests and trains the translation of physical requirements — norm invariance, unitarity, the p(k) curve — into checkable code.
 
