@@ -60,11 +60,11 @@ The following dialogue reproduces, in condensed form, the discussion that led to
 
 ## Status and Workflow
 
-The scaffold is in place: package structure, CI, and the full test suite exist; the implementations are placeholders. Work proceeds as specified: one milestone per PR, every CI stage green before merge, one SPEC section at a time as the working prompt. Deviations from the specifications are documented in the corresponding PR and in the package journal indexed by the root `REPORTME.md`; silent deviations are rejected.
+The scaffold is in place: package structure, CI, and the full test suite exist; the implementations are placeholders. Work proceeds as specified: one milestone per PR into the learn branch, every CI stage green before merge, one SPEC section at a time as the working prompt. Deviations from the specifications are documented in the corresponding PR and in the package journal indexed by the root `REPORTME.md`; silent deviations are rejected.
 
 ## Best Practice for This Repo
 
-The recommended way to learn from this repository: fork it at the [v0.1.0](https://github.com/DeepleMass/quantum-interference/tree/v0.1.0) tag and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. The scaffold deliberately removes everything that is not learning content — packaging, CI wiring, project structure — so you can concentrate on the implementations.
+The recommended way to learn from this repository: fork it at the [v0.1.0](https://github.com/DeepleMass/quantum-interference/tree/v0.1.0) tag and do all implementation work on the learn branch of your fork, keeping your fork's main at v0.1.0 as an untouched reference — a permanent diff target that shows, at any moment, how far you have come. Use the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints; each milestone lands as a pull request into your learn branch, one per milestone, every CI stage green before merge. The scaffold deliberately removes everything that is not learning content — packaging, CI wiring, project structure — so you can concentrate on the implementations.
 
 The tests are part of the contract, and the first exercise comes before any implementation: review the provided test suite against the specifications, check whether it covers the acceptance criteria completely and correctly, and fix gaps as your first own commits. This validates the AI-generated tests and trains the translation of physical requirements — norm invariance, unitarity, the p(k) curve — into checkable code.
 
