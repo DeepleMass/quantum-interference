@@ -1,13 +1,42 @@
 # REPORTME — quantum-interference
 
-Living document for the monorepo (SPEC-PHASE-1 section 9). It records build
-instructions, architecture rationale, naming conventions, the milestone status, and
-points to the generated experiment reports in `docs/reports/`.
+This file is the index of all learning reports in the repository. The learning
+journals live in the packages, longer deep-dive analyses live in `docs/progress/`,
+and both are indexed here. Static project reference (build, conventions, CI) is kept at
+the bottom of this file.
 
-Repository language is English throughout — code, comments, reports, commits
-(SPEC-PHASE-1 section 2). Commit convention: Conventional Commits.
+## How progress is logged
 
-## Status
+- One journal per package: `packages/qsim/REPORTME.md`, `packages/qhsp/REPORTME.md`, `packages/qae/REPORTME.md`.
+- One entry per milestone, written on completion — not per work session.
+- Fixed fields: milestone, date, deviations from the SPEC (with rationale), open questions.
+- Hard limit: about ten lines per entry. Anything longer becomes a deep-dive report in `docs/progress/` and is indexed below.
+- Newest entry at the top of each journal.
+
+Every journal ships with pre-created placeholder entries, so logging means filling
+fields, not inventing structure.
+
+## Milestone status
+
+| Phase | M1 | M2 | M3 | M4 | M5 | M6 |
+|---|---|---|---|---|---|---|
+| [qsim](packages/qsim/REPORTME.md) | done (scaffold) | open | open | open | open | open |
+| [qhsp](packages/qhsp/REPORTME.md) | open | open | open | open | open | open |
+| [qae](packages/qae/REPORTME.md) | open | open | open | open | open | open |
+
+Set a cell to `done <date>` once the milestone acceptance criteria hold; if the
+journal entry carries deviations, link the entry from the cell.
+
+## Deep-dive report index
+
+Longer analyses live in `docs/progress/` and are indexed here. Use
+[TEMPLATE.md](docs/progress/TEMPLATE.md) to start one.
+
+| Report | Phase | Milestone | Date |
+|---|---|---|---|
+| — | — | — | — |
+
+## Scaffold status
 
 **Scaffold, Phase 1 ready.** All modules of `qsim-core` and `packages/qsim` exist with
 their final API signatures, documentation, and placeholder bodies (`TODO(Mx)` markers,
@@ -16,15 +45,6 @@ Rust smoke tests (unit + integration) pass, Python smoke tests pass. The detaile
 cases from SPEC sections 7.1–7.4 are recorded as test plans (`TODO` comments in the test
 files) and are implemented milestone by milestone — by design, the scaffold ships green
 with smoke tests only.
-
-| Milestone | Content | Status |
-|---|---|---|
-| M1 | Repo skeleton, workspaces, green CI with a trivial test | done (scaffold) |
-| M2 | `state.rs` + `gates.rs` complete, unit tests 7.1 | placeholders + test plan |
-| M3 | `qft.rs` (sequence and matrix variant) | placeholders + test plan |
-| M4 | `measure.rs` + seeded sampling | placeholders + test plan |
-| M5 | `oracle.rs` + `cfrac.rs` + Rust integration tests | placeholders + test plan |
-| M6 | Python bindings, postprocess, main script, reports, Qiskit cross-check | placeholders + test plan |
 
 ## Build
 
@@ -84,7 +104,8 @@ python scripts/run_period_finding.py --n 15 --a 7 --shots 1024 --seed 42
 - Layout: `crates/qsim-core` (Rust core), `packages/qsim` (pyo3 bindings + Python
   orchestration, maturin mixed layout with `python-source = "src"`), `packages/qhsp` and
   `packages/qae` (Phase 2/3 stubs), `scripts/` (one experiment script per phase),
-  `docs/reports/` (generated reports, gitignored except `.gitkeep`).
+  `docs/reports/` (generated experiment reports, gitignored except `.gitkeep`),
+  `docs/progress/` (committed deep-dive reports, indexed above).
 - Placeholder convention in this scaffold: quantum semantics are `TODO(Mx)` functions
   returning default values; trivial accessors and formatting helpers are provided.
 

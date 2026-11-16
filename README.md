@@ -10,7 +10,7 @@ This repository exists to understand quantum computation by building it, not by 
 - `SPEC-PHASE-2-HSP-FRAMEWORK.md` — `qhsp`: the hidden subgroup problem as an abstract framework on Qiskit with three instances (order finding, Simon, discrete logarithm), and a hardware abstraction built exclusively on Qiskit Runtime primitives, so that moving from ideal simulation via noise models to real devices is a configuration change.
 - `SPEC-PHASE-3-MLAE.md` — `qae`: Grover and maximum-likelihood amplitude estimation. The quadratic speedup is treated as a statistical estimation problem — likelihood, Fisher information, Cramér–Rao bound, own optimizers, Bayesian variant — with Monte Carlo applications.
 
-Coding is done by an AI coding agent in VS Code, working milestone by milestone from these specifications. No code exists yet; this is the documentation baseline. The tag `Introduction` marks this point.
+The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold remains reachable in the commit history; once a dedicated tag names it, this README will reference it here.
 
 ## A Dialogue on Quantum Computation
 
@@ -50,8 +50,16 @@ The following dialogue reproduces, in condensed form, the discussion that led to
 
 ## Status and Workflow
 
-This tag contains documentation only. Work proceeds as specified: one milestone per PR, every CI stage green before merge, the coding agent receiving one SPEC section at a time. Deviations from the specifications are documented in the corresponding PR; silent deviations are rejected.
+The scaffold is in place: package structure, CI, and the full test suite exist; the implementations are placeholders. Work proceeds as specified: one milestone per PR, every CI stage green before merge, one SPEC section at a time as the working prompt. Deviations from the specifications are documented in the corresponding PR and in the package journal indexed by the root `REPORTME.md`; silent deviations are rejected.
 
 ## Best Practice for This Repo
 
-The `Introduction` tag marks a state of pure specification: all documentation, no implementation. This is deliberate. The recommended way to learn from this repository: fork it at the `Introduction` tag and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. Building the simulator, the framework, and the estimator yourself — instead of reading finished code — is the point. The milestones are ordered so that each phase only assumes what the previous one has taught; if you can meet the acceptance criteria of Phase 1 without looking at a reference, you have already understood the state vector, and Phases 2 and 3 build on exactly that foundation. Corrections to the specifications are welcome as PRs against this repository; implementation progress belongs in your fork.
+The recommended way to learn from this repository: fork it and work toward your own implementation, using the three specifications as your blueprint and the milestone acceptance criteria as your checkpoints. The scaffold deliberately removes everything that is not learning content — packaging, CI wiring, project structure — so you can concentrate on the implementations.
+
+The tests are part of the contract, and the first exercise comes before any implementation: review the provided test suite against the specifications, check whether it covers the acceptance criteria completely and correctly, and fix gaps as your first own commits. This validates the AI-generated tests and trains the translation of physical requirements — norm invariance, unitarity, the p(k) curve — into checkable code.
+
+After that, one rule holds for every milestone: read the failing test, explain why it fails and what the specification demands, predict the failure, then implement. A test you cannot explain is a lesson not yet learned, regardless of what the pipeline says.
+
+Progress is logged in a scalable journal system: the root `REPORTME.md` indexes everything, each package carries its own journal (`packages/qsim/REPORTME.md`, `packages/qhsp/REPORTME.md`, `packages/qae/REPORTME.md`) with pre-created placeholder entries per milestone — one entry per milestone, about ten lines, newest first, deviations from the specification each with its rationale. Longer analyses go into `docs/progress/` and are indexed in the root file. Filling placeholders instead of inventing structure keeps the barrier low; reviewing your own deviations at the end of a milestone is the most effective reflection step in the whole process.
+
+Building the simulator, the framework, and the estimator yourself — instead of reading finished code — is the point. The milestones are ordered so that each phase only assumes what the previous one has taught; if you can meet the acceptance criteria of Phase 1 without looking at a reference, you have already understood the state vector, and Phases 2 and 3 build on exactly that foundation. Corrections to the specifications and to the scaffold are welcome as PRs against this repository; implementation progress belongs in your fork.
