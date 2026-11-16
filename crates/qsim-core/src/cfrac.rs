@@ -8,6 +8,8 @@
 //! # Scaffold status
 //!
 //! Both functions are placeholders (`TODO(M5)`): empty expansion, `None` approximant.
+//!
+//! Reading: Nielsen & Chuang, §5.3, pp. 226–233 (10th anniversary edition).
 
 /// One convergent of a continued-fraction expansion: `(numerator, denominator)`.
 pub type Convergent = (u64, u64);

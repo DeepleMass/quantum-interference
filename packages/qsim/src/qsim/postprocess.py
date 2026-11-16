@@ -7,6 +7,8 @@ is allowed as a test reference only (SPEC 7.4).
 
 Scaffold status: every function is a placeholder returning a default value, marked with
 the milestone that owns its implementation.
+
+Reading: Nielsen & Chuang, §5.3, pp. 226–233 (10th anniversary edition).
 """
 
 from __future__ import annotations

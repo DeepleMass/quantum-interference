@@ -10,6 +10,8 @@
 //!
 //! All routines are placeholders (`TODO(M4)`): sampling returns empty counts,
 //! probabilities are all zero, collapse is a no-op returning 0.
+//!
+//! Reading: Nielsen & Chuang, §2.2.3, pp. 84–86; §4.4, pp. 185–187 (10th anniversary edition).
 
 use std::collections::HashMap;
 

@@ -13,6 +13,8 @@
 //!
 //! All gate matrices and both application routines are placeholders (`TODO(M2)`):
 //! matrices default to the identity, application is a no-op returning `Ok(())`.
+//!
+//! Reading: Nielsen & Chuang, §4.2, pp. 174–176; §4.3, pp. 177–184 (10th anniversary edition).
 
 use num_complex::Complex;
 

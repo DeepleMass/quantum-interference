@@ -11,6 +11,8 @@
 //!
 //! The struct, its trivial accessors, and bitstring formatting are in place.
 //! The constructors and the norm check are placeholders (`TODO(M2)`).
+//!
+//! Reading: Nielsen & Chuang, §2.1, pp. 61–79; §2.2.1–2.2.2, pp. 80–83 (10th anniversary edition).
 
 use num_complex::Complex;
 

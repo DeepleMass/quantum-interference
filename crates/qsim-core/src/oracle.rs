@@ -11,6 +11,8 @@
 //!
 //! The trait and struct are in place; `eval` and [`apply_oracle`] are placeholders
 //! (`TODO(M5)`).
+//!
+//! Reading: Nielsen & Chuang, §5.3, pp. 226–233 (10th anniversary edition).
 
 use crate::state::StateVector;
 use crate::Result;

@@ -11,6 +11,8 @@
 //!
 //! Everything is a placeholder (`TODO(M3)`): the sequence routines are no-ops, the
 //! matrix routine returns the identity.
+//!
+//! Reading: Nielsen & Chuang, §5.1, pp. 217–220 (10th anniversary edition).
 
 use num_complex::Complex;
 
