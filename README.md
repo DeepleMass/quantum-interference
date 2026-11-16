@@ -51,7 +51,7 @@ The following dialogue reproduces, in condensed form, the discussion that led to
 
 **Student:** What concrete applications follow from all this?
 
-**Professor:** From the structure-exploiting side: Shor breaks RSA and elliptic-curve cryptography, which is why stored traffic encrypted today must be treated as decryptable later and why the migration to post-quantum schemes (ML-KEM, ML-DSA, SLH-DSA, standardized by NIST in 2024) is under time pressure. From the search side: amplitude estimation accelerates Monte Carlo risk and pricing calculations in finance. From simulation: drug discovery, catalysts — the nitrogen-fixation problem alone consumes one to two percent of world energy via the Haber–Bosch process — batteries and materials. The safest near-term benefit is simulation, the most consequential mid-term one is cryptanalysis, and the broadest-advertised but least uncertain one is optimization.
+**Professor:** From the structure-exploiting side: Shor breaks RSA and elliptic-curve cryptography, which is why stored traffic encrypted today must be treated as decryptable later and why the migration to post-quantum schemes (ML-KEM, ML-DSA, SLH-DSA, standardized by NIST in 2024) is under time pressure. From the search side: amplitude estimation accelerates Monte Carlo risk and pricing calculations in finance. From simulation: drug discovery, catalysts — the nitrogen-fixation problem alone consumes one to two percent of world energy via the Haber–Bosch process — batteries and materials. The safest near-term benefit is simulation, the most consequential mid-term one is cryptanalysis, and the broadest-advertised but least certain one is optimization.
 
 **Student:** And this repository?
 
