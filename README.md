@@ -8,6 +8,7 @@ A didactic monorepo on quantum computation: from a hand-written state-vector sim
 2. [A Dialogue on Quantum Computation](#a-dialogue-on-quantum-computation)
 3. [Status and Workflow](#status-and-workflow)
 4. [Best Practice for This Repo](#best-practice-for-this-repo)
+5. [References](#references)
 
 ## Purpose of This Project
 
@@ -72,3 +73,26 @@ After that, one rule holds for every milestone: read the failing test, explain w
 Progress is logged in a scalable journal system: the root `REPORTME.md` indexes everything, each package carries its own journal (`packages/qsim/REPORTME.md`, `packages/qhsp/REPORTME.md`, `packages/qae/REPORTME.md`) with pre-created placeholder entries per milestone — one entry per milestone, about ten lines, newest first, deviations from the specification each with its rationale, and one field naming the misconception you had to overcome. Longer analyses go into `docs/progress/` and are indexed in the root file. Filling placeholders instead of inventing structure keeps the barrier low; reviewing your own deviations at the end of a milestone is the most effective reflection step in the whole process. A milestone counts as closed only when you can explain its central mechanism in one sentence without opening the specification — the entry records that sentence, and if it does not come, the milestone is not done.
 
 Building the simulator, the framework, and the estimator yourself — instead of reading finished code — is the point. The milestones are ordered so that each phase only assumes what the previous one has taught; if you can meet the acceptance criteria of Phase 1 without looking at a reference, you have already understood the state vector, and Phases 2 and 3 build on exactly that foundation. Corrections to the specifications and to the scaffold are welcome as PRs against this repository; implementation progress belongs in your fork.
+
+## References
+
+Standard literature, from textbook to paper. Each entry names the phase it accompanies, and the vocabulary is that of the dialogue and `COMPLEXITY.md`.
+
+Textbooks and lecture notes:
+
+- M. A. Nielsen and I. L. Chuang, `Quantum Computation and Quantum Information`, Cambridge University Press, 10th anniversary edition, 2010. The standard reference; its chapters on the quantum Fourier transform, order finding, and the hidden subgroup problem cover exactly the machinery of Phases 1 and 2.
+- J. Preskill, `Lecture Notes on Quantum Computation`, Caltech, available online. Physics-first, free, and deeper on fault tolerance than anything in this repository.
+- N. D. Mermin, `Quantum Computer Science: An Introduction`, Cambridge University Press, 2007. The shortest rigorous path through the subject, and the strictest about notation.
+- A. Kitaev, A. Shen, and M. Vyalyi, `Classical and Quantum Computation`, AMS, 2002. The complexity-theoretic view behind `COMPLEXITY.md`.
+
+Foundational papers:
+
+- P. W. Shor, "Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer," SIAM Journal on Computing 26(5), 1997. Phases 1 and 2: order finding and the abelian Fourier transform.
+- D. R. Simon, "On the Power of Quantum Computation," SIAM Journal on Computing 26(5), 1997. Phase 2: the Simon instance and the oracle separation behind the one provable exponential gap.
+- L. K. Grover, "A Fast Quantum Mechanical Algorithm for Database Search," Proceedings of the 28th ACM STOC, 1996. Phase 3: amplitude amplification.
+- C. H. Bennett, E. Bernstein, G. Brassard, and U. Vazirani, "Strengths and Weaknesses of Quantum Computing," SIAM Journal on Computing 26(5), 1997. The √N query lower bound: why Grover is optimal and search stays quadratic.
+- Y. Suzuki, S. Endo, J. Chen, and K. Fujii, "Amplitude estimation without phase estimation," Quantum 4, 261, 2020. Phase 3: maximum-likelihood amplitude estimation.
+- S. Aaronson and D. Gottesman, "Improved Simulation of Stabilizer Circuits," Physical Review A 70, 052328, 2004. The suggested stabilizer deep-dive, made practical.
+- NIST, FIPS 203, 204, and 205, August 2024. ML-KEM, ML-DSA, SLH-DSA — the post-quantum migration named in the dialogue.
+
+One detail worth noticing: Shor, Simon, and the Bennett–Bernstein–Brassard–Vazirani bound all appeared in the same 1997 issue of SIAM Journal on Computing. The field's founding moment is that compact.
