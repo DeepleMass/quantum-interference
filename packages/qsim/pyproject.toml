@@ -1,0 +1,18 @@
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "qsim"
+version = "0.1.0"
+description = "Phase 1: state-vector quantum simulator, Rust core (qsim-core) with pyo3 bindings. See SPEC-PHASE-1-SIMULATOR.md."
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "qiskit>=2.1,<2.2"] # qiskit only for the slow cross-validation tests
+
+[tool.maturin]
+python-source = "src"
+module-name = "qsim.qsim"
+features = ["pyo3/extension-module"]

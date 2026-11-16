@@ -1,0 +1,21 @@
+# Rust workspace root for the quantum-interference monorepo.
+# Members: the Phase-1 core library and the pyo3 binding crate.
+# See SPEC-PHASE-1-SIMULATOR.md section 3 for the intended layout.
+[workspace]
+resolver = "2"
+members = ["crates/qsim-core", "packages/qsim"]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+repository = "quantum-interference"
+
+# Workspace-wide dependency versions, pinned so that CI and local builds agree.
+[workspace.dependencies]
+num-complex = "0.4"
+thiserror = "2"
+rand = "0.9"
+rand_chacha = "0.9"
+pyo3 = { version = "0.22", features = ["extension-module"] }
+numpy = "0.22"
+proptest = "1"

@@ -1,0 +1,33 @@
+# Root of the uv workspace for the Python packages (packages/*).
+# Phase 1: packages/qsim. Phase 2: packages/qhsp. Phase 3: packages/qae.
+[project]
+name = "quantum-interference"
+version = "0.0.0"
+description = "Didactic monorepo on quantum computation: qsim (state-vector simulator), qhsp (HSP framework), qae (amplitude estimation)."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+# Strict ruff: full typing (ANN), docstrings (D), import order (I), pyupgrade (UP), ...
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RUF", "ANN", "D", "PT", "RET", "ARG"]
+ignore = ["D105", "D107"] # magic methods and __init__ docstrings are covered by class docs
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["D", "ANN", "ARG", "PT018"]
+"scripts/**" = ["D103"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (Qiskit cross-validation, large shot counts); deselected in fast CI",
+]
+testpaths = ["packages/qsim/tests"]

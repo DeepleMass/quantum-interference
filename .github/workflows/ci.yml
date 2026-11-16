@@ -1,0 +1,71 @@
+# CI for the quantum-interference monorepo (SPEC-PHASE-1 section 8).
+# Jobs: rust-checks -> python-checks -> build. Python tests only run when the Rust
+# build is green (needs:). Qiskit pinned to a fixed minor version; slow tests are
+# deselected in the fast path.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: fmt
+        run: cargo fmt --all --check
+      - name: clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: test (release)
+        run: cargo test --workspace --release
+      # Optional coverage: cargo install cargo-llvm-cov, then
+      # cargo llvm-cov --workspace --release --lcov --output-path lcov.info
+
+  python-checks:
+    needs: rust-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install tooling (qiskit pinned to a fixed minor version)
+        run: |
+          uv venv
+          uv pip install maturin ruff pytest numpy "qiskit>=2.1,<2.2"
+      - name: ruff lint + format
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: build bindings (maturin develop)
+        working-directory: packages/qsim
+        run: maturin develop --release
+      - name: pytest (without the slow marker)
+        run: uv run pytest packages/qsim/tests -m "not slow" -v
+
+  build:
+    needs: python-checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: maturin build (sdist + wheel, linux-x86_64 runner)
+        run: |
+          uv pip install maturin
+          cd packages/qsim && maturin build --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qsim-dist
+          path: packages/qsim/dist/*

@@ -1,0 +1,16 @@
+/target
+**/__pycache__/
+*.py[cod]
+.venv/
+.uv-cache/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+# maturin develop drops the compiled extension into the python package
+packages/qsim/src/qsim/*.so
+packages/qsim/src/qsim/*.pyd
+docs/reports/*.md
+docs/reports/*.csv
+!docs/reports/.gitkeep

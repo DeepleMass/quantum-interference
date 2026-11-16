@@ -1,0 +1,14 @@
+[project]
+name = "qhsp"
+version = "0.1.0"
+description = "Phase 2 scaffold: hidden subgroup problem framework on Qiskit. See SPEC-PHASE-2-HSP-FRAMEWORK.md."
+requires-python = ">=3.10"
+dependencies = [
+    "qsim",
+    "qiskit>=2.1,<2.2",
+    "qiskit-aer>=0.15,<0.16",
+    "sympy>=1.13,<2",
+]
+
+[tool.uv.sources]
+qsim = { workspace = true }
