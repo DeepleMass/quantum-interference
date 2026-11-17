@@ -14,3 +14,4 @@ packages/qsim/src/qsim/*.pyd
 docs/reports/*.md
 docs/reports/*.csv
 !docs/reports/.gitkeep
+move_ralease_commit.sh
