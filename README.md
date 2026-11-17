@@ -10,7 +10,8 @@ Human-designed, AI-generated: the specifications, the curriculum, and the dialog
 2. [Status and Workflow](#status-and-workflow)
 3. [Best Practice for This Repo](#best-practice-for-this-repo)
 4. [References](#references)
-5. [A Dialogue on Quantum Computation](#a-dialogue-on-quantum-computation)
+5. [License](#license)
+6. [A Dialogue on Quantum Computation](#a-dialogue-on-quantum-computation)
 
 ## Purpose of This Project
 
@@ -63,6 +64,10 @@ Foundational papers:
 - NIST, FIPS 203, 204, and 205, August 2024. ML-KEM, ML-DSA, SLH-DSA — the post-quantum migration named in the dialogue.
 
 One detail worth noticing: Shor, Simon, and the Bennett–Bernstein–Brassard–Vazirani bound all appeared in the same 1997 issue of SIAM Journal on Computing. The field's founding moment is that compact.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Fork it, learn from it, build on it.
 
 ## A Dialogue on Quantum Computation
 
