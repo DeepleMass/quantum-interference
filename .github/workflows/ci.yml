@@ -38,10 +38,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: install tooling (qiskit pinned to a fixed minor version)
+      - name: create venv and install tooling (qiskit pinned to a fixed minor version)
         run: |
-          uv venv
-          uv pip install maturin ruff pytest numpy "qiskit>=2.1,<2.2"
+          uv venv .venv
+          uv pip install --python .venv/bin/python maturin ruff pytest numpy "qiskit>=2.1,<2.2"
+          echo "VIRTUAL_ENV=$PWD/.venv" >> "$GITHUB_ENV"
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
       - name: ruff lint + format
         run: |
           ruff check .
@@ -50,7 +52,7 @@ jobs:
         working-directory: packages/qsim
         run: maturin develop --release
       - name: pytest (without the slow marker)
-        run: uv run pytest packages/qsim/tests -m "not slow" -v
+        run: pytest packages/qsim/tests -m "not slow" -v
 
   build:
     needs: python-checks
@@ -61,10 +63,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: maturin build (sdist + wheel, linux-x86_64 runner)
+      - name: create venv and install maturin
         run: |
-          uv pip install maturin
-          cd packages/qsim && maturin build --release
+          uv venv .venv
+          uv pip install --python .venv/bin/python maturin
+          echo "VIRTUAL_ENV=$PWD/.venv" >> "$GITHUB_ENV"
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+      - name: maturin build (sdist + wheel, linux-x86_64 runner)
+        working-directory: packages/qsim
+        run: maturin build --release
       - uses: actions/upload-artifact@v4
         with:
           name: qsim-dist
