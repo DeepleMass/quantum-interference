@@ -18,7 +18,7 @@ jobs:
   rust-checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
       - name: fmt
         run: cargo fmt --all --check
@@ -33,9 +33,9 @@ jobs:
     needs: rust-checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: create venv and install tooling (qiskit pinned to a fixed minor version)
@@ -58,9 +58,9 @@ jobs:
     needs: python-checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: create venv and install maturin
@@ -72,7 +72,7 @@ jobs:
       - name: maturin build (sdist + wheel, linux-x86_64 runner)
         working-directory: packages/qsim
         run: maturin build --release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: qsim-dist
           path: packages/qsim/dist/*
