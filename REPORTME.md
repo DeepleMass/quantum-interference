@@ -18,6 +18,7 @@ linear-algebra machinery underneath is collected in [LINALG.md](LINALG.md).
 7. [Naming and layout conventions](#naming-and-layout-conventions)
 8. [Reports](#reports)
 9. [CI](#ci)
+10. [Release convention](#release-convention)
 
 ## How progress is logged
 
@@ -147,3 +148,19 @@ Qiskit pinned to a fixed minor version; `needs: rust-checks`) → `build` (matur
 wheel for linux-x86_64, uploaded as artifact). Triggers: pushes and PRs to main.
 
 ![CI](https://github.com/DeepleMass/quantum-interference/actions/workflows/ci.yml/badge.svg)
+
+## Release convention
+
+Every milestone completed and merged to main gets a tagged release. Tag names follow the
+phase-milestone scheme: `qsim-m2`, `qsim-m3`, ..., `qhsp-m1`, ..., `qae-m6`. Semantic-version tags are
+reserved for project-level states: `v0.1.0` is the scaffold, `docs-baseline` preserves the
+documentation-only beginning, and phase completions raise the minor version.
+
+Each tag gets a GitHub release whose notes state three things: what the milestone
+implements per the SPEC, which acceptance criteria were met, and what remains for the
+next milestone. Notes are written after the journal entry, never before.
+
+Tags exist for the forks, not for upstream vanity: every fork tracks its own progress
+against the upstream tags, so `qsim-m2` tells a learner exactly which upstream state their
+implementation corresponds to. When in doubt, tag from main only — learn carries work in
+progress, and a tag must always point at a state where CI is green.
