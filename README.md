@@ -7,10 +7,10 @@ Human-designed, AI-generated: the specifications, the curriculum, and the dialog
 ## Contents
 
 1. [Purpose of This Project](#purpose-of-this-project)
-2. [A Dialogue on Quantum Computation](#a-dialogue-on-quantum-computation)
-3. [Status and Workflow](#status-and-workflow)
-4. [Best Practice for This Repo](#best-practice-for-this-repo)
-5. [References](#references)
+2. [Status and Workflow](#status-and-workflow)
+3. [Best Practice for This Repo](#best-practice-for-this-repo)
+4. [References](#references)
+5. [A Dialogue on Quantum Computation](#a-dialogue-on-quantum-computation)
 
 ## Purpose of This Project
 
@@ -23,42 +23,6 @@ This repository exists to understand quantum computation by building it, not by 
 A complexity-theoretic companion, `COMPLEXITY.md`, collects the asymptotic vocabulary used throughout — P, NP, BPP, BQP, query lower bounds, Gottesman–Knill simulation, the Cramér–Rao bound, Heisenberg scaling — relates the terms, and places the three phases within that landscape. A linear-algebra companion, `LINALG.md`, does the same for the objects themselves: amplitudes and the Born rule, tensor products, unitaries and projectors, the spectral theorem, and the QFT as the DFT — the mathematics the three phases make executable.
 
 The repository was bootstrapped by an AI coding agent in VS Code working from these specifications: main now carries the complete scaffold — package structure, CI wiring, and the full test suite — with placeholders instead of implementations. Learning means filling those placeholders against the specifications. The documentation-only state that preceded the scaffold is preserved by the tag [docs-baseline](https://github.com/DeepleMass/quantum-interference/tree/docs-baseline).
-
-## A Dialogue on Quantum Computation
-
-The following dialogue reproduces, in condensed form, the discussion that led to this project: what a quantum computer can and cannot do, where the advantage comes from, and what follows for cryptography and applications.
-
-**Student:** Shor specified the quantum computer by seeing in it a way to solve the hidden subgroup problem, and he gave an algorithm for it. So every problem that reduces to the hidden subgroup problem is solvable on a quantum computer. Correct?
-
-**Professor:** In essence yes, with two qualifications. Shor's algorithm is an instance of the hidden subgroup problem over abelian groups: factoring reduces to it over Z, discrete logarithms over Z × Z. The quantum Fourier transform over such groups runs in polynomial time, which is what makes the solution efficient. The non-abelian generalization, however, is open: graph isomorphism reduces to the HSP over the symmetric group, and no efficient quantum algorithm for it is known. And "solvable" here always means efficiently solvable, in polynomial time.
-
-**Student:** Which other categories of problems can a quantum computer handle, beyond the hidden subgroup problem?
-
-**Professor:** Three matter. First, simulation of quantum systems — Feynman's original motivation: chemistry, materials, ground states, reaction paths; classically exponential in the number of electrons, quantumly essentially linear in simulation time. Second, search and amplitude amplification: Grover finds a hit among N items in about √N steps, and a lower-bound theorem says no quantum algorithm can do better on an unstructured problem — so quadratic, never exponential. Third, amplitude estimation, the analytic sibling of Grover: it quadratically accelerates Monte Carlo methods, which is its most credible economic application. Quantum linear algebra (HHL) exists but carries caveats about input loading and output readout. Adiabatic schemes and QAOA target optimization; their advantage is unproven.
-
-**Student:** Please explain Shor's factoring algorithm.
-
-**Professor:** It reduces factoring to order finding. For a coprime a, the function f(x) = a^x mod N is periodic with the order r, the smallest exponent with a^r ≡ 1 mod N. If r is even and a^{r/2} is not congruent to −1, then gcd(a^{r/2} ± 1, N) yields factors of N with probability at least one half per attempt. Finding r is the hard part, and there sits the quantum kernel: uniform superposition over an input register of size Q ≥ N², the oracle writes a^x mod N, and the quantum Fourier transform turns the periodic structure into sharp peaks at multiples of Q/r. A measurement plus continued fractions reconstructs r. The decisive concept is interference, not parallelism: the machine does not try all candidates and pick one; the Fourier structure condenses global algebraic information into a probability distribution whose measurement yields the period with high probability. That is why Shor is exponential while Grover, a pure search without structure, is capped at quadratic.
-
-**Student:** To what extent is this implementable on a classical binary computer, simulating the quantum machine?
-
-**Professor:** Fully in principle, exponentially expensive in practice. An n-qubit state is a vector of 2^n complex amplitudes; simulators reach roughly 45 to 50 qubits on supercomputers. Remarkably, the QFT itself is classically trivial — it is just the discrete Fourier transform. The cost comes solely from entanglement: an entangled state factorizes into no product of smaller pieces, so the full vector must be stored and updated. Efficient classical simulation exists exactly where entanglement is structurally limited, as in the Gottesman–Knill theorem for Clifford circuits — and Shor's circuit lies outside that class. Running a full classical simulation of Shor for factoring is circular: you pay back the very exponentiality the quantum computer was supposed to avoid.
-
-**Student:** Is that why symmetric encryption cannot be broken, not even by a quantum computer — the effort grows exponentially?
-
-**Professor:** The conclusion is right, the reasoning needs correction. The reason is neither entanglement entropy nor energy, but a proven lower bound and the absence of exploitable structure. Key search against a well-designed cipher is an unstructured black-box problem, and the Bennett–Bernstein–Brassard–Vazirani bound says every quantum algorithm needs at least √N oracle queries. Grover meets that bound exactly: AES-128 falls from 2^128 to 2^64 steps, still exponential — hence the standard recommendation of AES-256. One caveat: this protection is an assumption about the cipher having no hidden algebraic structure, not a theorem. Certain classically secure constructions, such as Even–Mansour and some Feistel and MAC schemes, fall to the Simon algorithm given superposition access to the oracle. For AES no such structure is known.
-
-**Student:** So the quantum advantage arises when an algorithm costs exponential effort on a binary computer and polynomial effort on a quantum computer?
-
-**Professor:** Yes, with three refinements. First, the separation is relative: it holds against the best known classical algorithm — for factoring that is subexponential, the number field sieve; proven exponential classical hardness is not known. Second, not every speedup is of that kind: Grover's quadratic advantage is real and provable, but a longer key neutralizes it, whereas an exponential advantage breaks cryptographic assumptions for good. Third, the asymptotics refer to logical gates: fault tolerance adds a polynomial overhead in physical qubits and gates — hundreds to thousands of physical qubits per logical one — so the constants are enormous while the asymptotic picture stands.
-
-**Student:** What concrete applications follow from all this?
-
-**Professor:** From the structure-exploiting side: Shor breaks RSA and elliptic-curve cryptography, which is why stored traffic encrypted today must be treated as decryptable later and why the migration to post-quantum schemes (ML-KEM, ML-DSA, SLH-DSA, standardized by NIST in 2024) is under time pressure. From the search side: amplitude estimation accelerates Monte Carlo risk and pricing calculations in finance. From simulation: drug discovery, catalysts — the nitrogen-fixation problem alone consumes one to two percent of world energy via the Haber–Bosch process — batteries and materials. The safest near-term benefit is simulation, the most consequential mid-term one is cryptanalysis, and the broadest-advertised but least certain one is optimization.
-
-**Student:** And this repository?
-
-**Professor:** One phase per insight. `qsim` builds the foundation by hand, so you feel the 2^n and the interference in code you own. `qhsp` makes the thesis "one algorithm, three instances" executable: the same abstract procedure, instantiated over three groups, with a hardware abstraction that survives contact with real devices. And `qae` turns Grover's quadratic speedup into a statistical estimation problem — likelihood, Fisher information, Cramér–Rao — the bridge from quantum computing to machine learning. If you have walked all three, you know not only that the quantum advantage exists, but exactly where it comes from and where it ends.
 
 ## Status and Workflow
 
@@ -99,3 +63,39 @@ Foundational papers:
 - NIST, FIPS 203, 204, and 205, August 2024. ML-KEM, ML-DSA, SLH-DSA — the post-quantum migration named in the dialogue.
 
 One detail worth noticing: Shor, Simon, and the Bennett–Bernstein–Brassard–Vazirani bound all appeared in the same 1997 issue of SIAM Journal on Computing. The field's founding moment is that compact.
+
+## A Dialogue on Quantum Computation
+
+The following dialogue reproduces, in condensed form, the discussion that led to this project: what a quantum computer can and cannot do, where the advantage comes from, and what follows for cryptography and applications.
+
+**Student:** Shor specified the quantum computer by seeing in it a way to solve the hidden subgroup problem, and he gave an algorithm for it. So every problem that reduces to the hidden subgroup problem is solvable on a quantum computer. Correct?
+
+**Professor:** In essence yes, with two qualifications. Shor's algorithm is an instance of the hidden subgroup problem over abelian groups: factoring reduces to it over Z, discrete logarithms over Z × Z. The quantum Fourier transform over such groups runs in polynomial time, which is what makes the solution efficient. The non-abelian generalization, however, is open: graph isomorphism reduces to the HSP over the symmetric group, and no efficient quantum algorithm for it is known. And "solvable" here always means efficiently solvable, in polynomial time.
+
+**Student:** Which other categories of problems can a quantum computer handle, beyond the hidden subgroup problem?
+
+**Professor:** Three matter. First, simulation of quantum systems — Feynman's original motivation: chemistry, materials, ground states, reaction paths; classically exponential in the number of electrons, quantumly essentially linear in simulation time. Second, search and amplitude amplification: Grover finds a hit among N items in about √N steps, and a lower-bound theorem says no quantum algorithm can do better on an unstructured problem — so quadratic, never exponential. Third, amplitude estimation, the analytic sibling of Grover: it quadratically accelerates Monte Carlo methods, which is its most credible economic application. Quantum linear algebra (HHL) exists but carries caveats about input loading and output readout. Adiabatic schemes and QAOA target optimization; their advantage is unproven.
+
+**Student:** Please explain Shor's factoring algorithm.
+
+**Professor:** It reduces factoring to order finding. For a coprime a, the function f(x) = a^x mod N is periodic with the order r, the smallest exponent with a^r ≡ 1 mod N. If r is even and a^{r/2} is not congruent to −1, then gcd(a^{r/2} ± 1, N) yields factors of N with probability at least one half per attempt. Finding r is the hard part, and there sits the quantum kernel: uniform superposition over an input register of size Q ≥ N², the oracle writes a^x mod N, and the quantum Fourier transform turns the periodic structure into sharp peaks at multiples of Q/r. A measurement plus continued fractions reconstructs r. The decisive concept is interference, not parallelism: the machine does not try all candidates and pick one; the Fourier structure condenses global algebraic information into a probability distribution whose measurement yields the period with high probability. That is why Shor is exponential while Grover, a pure search without structure, is capped at quadratic.
+
+**Student:** To what extent is this implementable on a classical binary computer, simulating the quantum machine?
+
+**Professor:** Fully in principle, exponentially expensive in practice. An n-qubit state is a vector of 2^n complex amplitudes; simulators reach roughly 45 to 50 qubits on supercomputers. Remarkably, the QFT itself is classically trivial — it is just the discrete Fourier transform. The cost comes solely from entanglement: an entangled state factorizes into no product of smaller pieces, so the full vector must be stored and updated. Efficient classical simulation exists exactly where entanglement is structurally limited, as in the Gottesman–Knill theorem for Clifford circuits — and Shor's circuit lies outside that class. Running a full classical simulation of Shor for factoring is circular: you pay back the very exponentiality the quantum computer was supposed to avoid.
+
+**Student:** Is that why symmetric encryption cannot be broken, not even by a quantum computer — the effort grows exponentially?
+
+**Professor:** The conclusion is right, the reasoning needs correction. The reason is neither entanglement entropy nor energy, but a proven lower bound and the absence of exploitable structure. Key search against a well-designed cipher is an unstructured black-box problem, and the Bennett–Bernstein–Brassard–Vazirani bound says every quantum algorithm needs at least √N oracle queries. Grover meets that bound exactly: AES-128 falls from 2^128 to 2^64 steps, still exponential — hence the standard recommendation of AES-256. One caveat: this protection is an assumption about the cipher having no hidden algebraic structure, not a theorem. Certain classically secure constructions, such as Even–Mansour and some Feistel and MAC schemes, fall to the Simon algorithm given superposition access to the oracle. For AES no such structure is known.
+
+**Student:** So the quantum advantage arises when an algorithm costs exponential effort on a binary computer and polynomial effort on a quantum computer?
+
+**Professor:** Yes, with three refinements. First, the separation is relative: it holds against the best known classical algorithm — for factoring that is subexponential, the number field sieve; proven exponential classical hardness is not known. Second, not every speedup is of that kind: Grover's quadratic advantage is real and provable, but a longer key neutralizes it, whereas an exponential advantage breaks cryptographic assumptions for good. Third, the asymptotics refer to logical gates: fault tolerance adds a polynomial overhead in physical qubits and gates — hundreds to thousands of physical qubits per logical one — so the constants are enormous while the asymptotic picture stands.
+
+**Student:** What concrete applications follow from all this?
+
+**Professor:** From the structure-exploiting side: Shor breaks RSA and elliptic-curve cryptography, which is why stored traffic encrypted today must be treated as decryptable later and why the migration to post-quantum schemes (ML-KEM, ML-DSA, SLH-DSA, standardized by NIST in 2024) is under time pressure. From the search side: amplitude estimation accelerates Monte Carlo risk and pricing calculations in finance. From simulation: drug discovery, catalysts — the nitrogen-fixation problem alone consumes one to two percent of world energy via the Haber–Bosch process — batteries and materials. The safest near-term benefit is simulation, the most consequential mid-term one is cryptanalysis, and the broadest-advertised but least certain one is optimization.
+
+**Student:** And this repository?
+
+**Professor:** One phase per insight. `qsim` builds the foundation by hand, so you feel the 2^n and the interference in code you own. `qhsp` makes the thesis "one algorithm, three instances" executable: the same abstract procedure, instantiated over three groups, with a hardware abstraction that survives contact with real devices. And `qae` turns Grover's quadratic speedup into a statistical estimation problem — likelihood, Fisher information, Cramér–Rao — the bridge from quantum computing to machine learning. If you have walked all three, you know not only that the quantum advantage exists, but exactly where it comes from and where it ends.
