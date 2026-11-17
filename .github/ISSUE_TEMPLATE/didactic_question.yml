@@ -1,0 +1,22 @@
+name: Didactic question
+description: Ask about the concepts behind the specs — mathematics, algorithms, or the learning path
+labels: ["question"]
+body:
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Which phase does it concern?
+      options:
+        - Phase 1 (qsim)
+        - Phase 2 (qhsp)
+        - Phase 3 (qae)
+        - General / curriculum
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Conceptual questions belong here. If you are stuck on your own implementation, use Discussions (Show and tell) instead — implementation progress belongs in your fork.
+    validations:
+      required: true

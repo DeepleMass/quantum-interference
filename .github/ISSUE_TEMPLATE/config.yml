@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Open feedback and ideas
+    url: https://github.com/DeepleMass/quantum-interference/discussions
+    about: General feedback, curriculum ideas, and questions about the learning path belong in Discussions.

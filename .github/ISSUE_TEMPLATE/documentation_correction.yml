@@ -1,0 +1,38 @@
+name: Documentation correction
+description: Point out an error or gap in a SPEC, the README, REPORTME, or a companion file
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: file
+    attributes:
+      label: Which file?
+      options:
+        - SPEC-PHASE-1-SIMULATOR.md
+        - SPEC-PHASE-2-HSP-FRAMEWORK.md
+        - SPEC-PHASE-3-MLAE.md
+        - README.md
+        - REPORTME.md
+        - COMPLEXITY.md
+        - LINALG.md
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Section or line
+      description: E.g. "SPEC-PHASE-1, section 4.3" or "README, References"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing?
+      description: Quote the passage if possible, then state the correction.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source for the correction (optional)
+      description: E.g. N&C section and page, or a paper reference.
