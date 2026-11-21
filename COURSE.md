@@ -1,6 +1,6 @@
 # COURSE.md — Supervised course mode
 
-The README describes the default mode: a single learner, a personal fork, work on its own learn branch. In a supervised course setting with several students, forks are replaced by named student branches in this repository, and the instructor validates each learning step through a merge request. This file defines that mode.
+The README describes the default mode: a single learner, a personal fork, work on its own learn branch. In a supervised course setting with several students, forks are replaced by named student branches in this repository, and the instructor validates each learning step through a merge request. This file defines that mode — one way to run such a course; adopt whatever fits your own setting.
 
 ## Roles
 
@@ -47,11 +47,7 @@ Both travel with the course mode unchanged. The Reading column of the milestone 
 
 ## The instructor as self-learner
 
-The instructor walks the same curriculum — ideally one milestone ahead of the course — in a private mirror of this repository: a full duplicate created at the seed state, with this repository added as the upstream remote for pulling curriculum updates. A mirror rather than a fork, because GitHub does not allow forking one's own repository, and a private one, because the instructor's implementations are worked solutions. Worked solutions inside this repository would defeat the point of every student branch. Students never interact with the mirror; the self-learner outside a course never does either — that learner forks this repository directly, as the README describes.
-
-## The instructor as self-learner
-
-The instructor walks the same curriculum — ideally one milestone ahead of the course — in a private mirror of this repository: a full duplicate created at the seed state, with this repository added as the upstream remote for pulling curriculum updates. A mirror rather than a fork, because GitHub does not allow forking one's own repository, and a private one, because the instructor's implementations are worked solutions. Worked solutions inside this repository would defeat the point of every student branch. Students never interact with the mirror; the self-learner outside a course never does either — that learner forks this repository directly, as the README describes.
+An instructor who also walks the curriculum — ideally one milestone ahead of the course — keeps that work in a private copy of this repository: a clone pushed to the instructor's own GitHub or GitLab, fully decoupled from this repository, with this repository added as an upstream remote for pulling curriculum updates. It stays private because the instructor's implementations are worked solutions, and worked solutions inside a course repository would defeat the point of every student branch. Students never see the copy. How exactly it is set up — a GitHub duplicate that preserves history and tags, or a plain clone with a new remote — is the instructor's own decision.
 
 ## Seeding a student branch
 
@@ -61,4 +57,4 @@ git switch -c learn/anna
 git push -u origin learn/anna
 ```
 
-Seeding happens once, at course start, from the current main. Late joiners are seeded from main as well; their diff target is the same for everyone.
+Seeding happens once, at course start, from the current main. Late joiners are seeded from main as well; their diff target is same for everyone.
