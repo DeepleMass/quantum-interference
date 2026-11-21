@@ -45,6 +45,14 @@ The README describes the default mode: a single learner, a personal fork, work o
 
 Both travel with the course mode unchanged. The Reading column of the milestone tables names the literature for each milestone; journal files live inside each student's branch, so `learn/<name>` carries that student's journal history with it, and the instructor reads the journal as part of the review.
 
+## The instructor as self-learner
+
+The instructor walks the same curriculum — ideally one milestone ahead of the course — in a private mirror of this repository: a full duplicate created at the seed state, with this repository added as the upstream remote for pulling curriculum updates. A mirror rather than a fork, because GitHub does not allow forking one's own repository, and a private one, because the instructor's implementations are worked solutions. Worked solutions inside this repository would defeat the point of every student branch. Students never interact with the mirror; the self-learner outside a course never does either — that learner forks this repository directly, as the README describes.
+
+## The instructor as self-learner
+
+The instructor walks the same curriculum — ideally one milestone ahead of the course — in a private mirror of this repository: a full duplicate created at the seed state, with this repository added as the upstream remote for pulling curriculum updates. A mirror rather than a fork, because GitHub does not allow forking one's own repository, and a private one, because the instructor's implementations are worked solutions. Worked solutions inside this repository would defeat the point of every student branch. Students never interact with the mirror; the self-learner outside a course never does either — that learner forks this repository directly, as the README describes.
+
 ## Seeding a student branch
 
 ```bash
