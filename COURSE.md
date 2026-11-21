@@ -57,4 +57,4 @@ git switch -c learn/anna
 git push -u origin learn/anna
 ```
 
-Seeding happens once, at course start, from the current main. Late joiners are seeded from main as well; their diff target is same for everyone.
+Seeding happens once, at course start, from the current main. Late joiners are seeded from main as well; their diff target is the same for everyone.
