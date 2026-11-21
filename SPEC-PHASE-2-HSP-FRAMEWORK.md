@@ -2,17 +2,28 @@
 
 ## 1. Purpose and Scope
 
-This project implements the hidden subgroup problem (HSP) as an abstract Python framework on top of Qiskit, with three concrete instances: order finding (HSP over Z_Q, the core of Shor's algorithm), Simon's algorithm (HSP over Z_2^n), and the discrete logarithm (HSP over a product of cyclic groups). The goal is to make visible in code that all three are the same abstract procedure, differing only in group, Fourier transform, and classical post-processing — the central thesis of the Phase-1 discussion.
+This project implements the hidden subgroup problem ($HSP$) as an abstract `Python` framework on top of `Qiskit`, with three concrete instances:  
+* order finding ($HSP$ over $Z_Q$, the core of Shor's algorithm)
+* Simon's algorithm ($HSP$ over $Z_2^n$), and the discrete logarithm ($HSP$ over a product of cyclic groups). 
 
-Second, equal-ranking goal: a hardware abstraction layer built exclusively on Qiskit Runtime primitives (Sampler V2), so that the transition from ideal simulation via noise models to real IBM devices is a configuration change, not a refactoring. The Phase-1 simulator (qsim) remains a dependency and serves as the zero-noise reference in cross-tests.
+**The goal** is to make visible in code that all three are the same abstract procedure, differing only in group, Fourier transform, and classical post-processing — the central thesis of the Phase-1 discussion.
 
-Non-goals: end-to-end Shor for large N, non-abelian HSP, own fault-tolerance logic, circuit performance tuning beyond what is didactically necessary.
+**Second, equal-ranking goal**: a hardware abstraction layer built exclusively on `Qiskit Runtime primitives` (`Sampler V2`), so that the transition from ideal simulation via noise models to real `IBM` devices is a configuration change, not a refactoring. The Phase-1 simulator (`qsim`) remains a dependency and serves as the zero-noise reference in cross-tests.
+
+**Non-goals**: end-to-end Shor for large N, non-abelian HSP, own fault-tolerance logic, circuit performance tuning beyond what is didactically necessary.
 
 ## 2. Architecture
 
-Four layers. The domain layer models abelian groups as products of cyclic factors and defines the HSP problem as a data class: group G, hidden subgroup H (known only to tests), and a coset-invariant function f. The algorithm layer contains the abstract base class AbelianHSP with the generic procedure — superposition, oracle, Fourier transform over G, measurement, classical post-processing — and the three concrete instances as subclasses. The backend layer encapsulates exclusively through a Target object that internally provides a Sampler V2; no Qiskit backend is ever referenced in algorithm code. The experiment layer bundles runs, statistics, and report generation.
+Four layers. 
+* The domain layer models abelian groups as products of cyclic factors and defines the $HSP$ problem as a data class: group G, hidden subgroup H (known only to tests), and a coset-invariant function f. 
 
-Dependency rule: the domain and algorithm layers know Qiskit only through circuit construction and the Target interface. Everything concerning a concrete device, noise, or transpilation lives in the backend and experiment layers.
+* The algorithm layer contains the abstract base class `AbelianHSP` with the generic procedure — `superposition`, `oracle`, `Fourier transform over G`, `measurement`, classical `post-processing` — and the three concrete instances as subclasses. 
+
+* The backend layer encapsulates exclusively through a Target object that internally provides a Sampler V2; no Qiskit backend is ever referenced in algorithm code. 
+
+* The experiment layer bundles runs, statistics, and report generation.
+
+**Dependency rule**: the domain and algorithm layers know `Qiskit` only through circuit construction and the Target interface. Everything concerning a concrete device, noise, or transpilation lives in the backend and experiment layers.
 
 ## 3. Repository Structure (monorepo excerpt)
 
@@ -50,21 +61,41 @@ quantum-interference/
 
 ### 4.1 groups.py — Abelian Groups
 
-Class AbelianGroup as a product of cyclic groups Z_{n_1} x … x Z_{n_k}, internally represented as a factor list. Operations: exponentiation, composition, inverse, element order, generator search, coset representation. For circuit purposes: mapping of each factor to a qubit register of width ceil(log2(n_i)); factors that are not powers of two are embedded into a register via the power-of-two embedding (Q ≥ N² rule as in Phase 1), surplus states documented and discarded in post-processing. Constructors: Z(n), Z2_n(k), Z_p_star(p) with a generator.
+**Class AbelianGroup** as a product of cyclic groups $Z_{n_1} x … x Z_{n_k}$, internally represented as a factor list.   
+
+**Operations**: exponentiation, composition, inverse, element order, generator search, coset representation. 
+
+**For circuit purposes**: mapping of each factor to a qubit register of width $ceil(log2(n_i))$; factors that are not powers of two are embedded into a register via the power-of-two embedding ($Q ≥ N²$ rule as in Phase 1), surplus states documented and discarded in post-processing. 
+
+**Constructors**: $Z(n)$, $Z2_n(k)$, $Z_{p_star}(p)$ with a generator.
 
 ### 4.2 problem.py — HSP Problem
 
-Data class HSPProblem(group, oracle, hidden_subgroup, coset_representative). The oracle type is a callable from group elements to int, plus width specifications. Verification method verify_invariance(): for sampled x and all generators h of H, f(x) = f(x·h) must hold, and for samples from different cosets f must differ. This method is the formal check of the HSP precondition and runs as a unit test for every concrete instance; an oracle that fails it is by definition not a valid HSP oracle. hidden_subgroup is test knowledge only, never an input to the algorithm.
+Data class `HSPProblem(group, oracle, hidden_subgroup, coset_representative)`. The oracle type is a `callable` from group elements to `int`, plus `width` specifications. 
+
+Verification method `verify_invariance()`: for `sampled x` and all generators `h` of `H`, `f(x) = f(x·h)` must hold, and for samples from different `cosets f` must differ. 
+
+This method is the formal check of the `HSP` precondition and runs as a `unit test` for every concrete instance; an `oracle` that fails it is by definition not a valid `HSP oracle`. `hidden_subgroup` is test knowledge only, never an input to the algorithm.
 
 ## 5. Algorithm Layer: Requirements
 
 ### 5.1 base.py — Abstract Procedure
 
-Abstract class AbelianHSP with a template-method structure. The concrete flow in solve(problem, target, shots) -> HSPResult: derive the register layout from the group, uniform superposition on the input register, oracle application, Fourier transform over the group on the input register, measurement, delegation of the measurement data to classical_postprocess(samples), and returning candidate generators plus statistics. Abstract and instance-specific are only: the oracle circuit construction, the Fourier transform used, and the classical post-processing. Repetition logic (enough independent measurement runs for the kernel space of H) sits generically in the base class, configurable via a minimum number of linearly independent samples.
+Abstract class `AbelianHSP` with a template-method structure. 
+
+The concrete flow in `solve(problem, target, shots) -> HSPResult`: derive the register layout from the `group`, uniform superposition on the `input register`, `oracle` application, `Fourier transform` over the `group` on the `input register`, `measurement`, delegation of the `measurement` data to `classical_postprocess(samples)`, and returning `candidate generators` plus `statistics`. 
+
+Abstract and instance-specific are only: the `oracle circuit construction`, the `Fourier transform` used, and the classical `post-processing`. Repetition logic (enough independent measurement runs for the kernel space of `H`) sits generically in the `base class`, configurable via a `minimum number` of linearly independent samples.
 
 ### 5.2 fourier.py — Fourier Transforms
 
-Dispatch over the group structure. Z_2^n: Hadamard on every qubit — this is the QFT over Z_2 and explains why Simon needs no phase gates; the fact is made explicit in the docstring. Z_2^m: Qiskit's QFTGate and its inverse. Products: tensor product of the component transforms over register partitions. Every Fourier operation has a test correspondence: application to the uniform superposition is a fixed point, application to coset states produces the peaks — both are verified numerically via Statevector in tests, not only via sampling.
+Dispatch over the group structure. 
+
+$Z_2^n$: Hadamard on every qubit — this is the $QFT$ over $Z_2$ and explains why Simon needs no phase gates; the fact is made explicit in the docstring. 
+
+$Z_2^m$: `Qiskit`'s `QFTGate` and its `inverse`. 
+
+Products: tensor product of the component transforms over register partitions. Every Fourier operation has a test correspondence: application to the uniform superposition is a fixed point, application to coset states produces the peaks — both are verified numerically via Statevector in tests, not only via sampling.
 
 ### 5.3 instances/ — The Three Instances
 
